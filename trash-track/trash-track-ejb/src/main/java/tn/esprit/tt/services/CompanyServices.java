@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
  * Session Bean implementation class CompanyServices
  */
 @Stateless
-@LocalBean
 public class CompanyServices implements CompanyServicesRemote, CompanyServicesLocal {
 
 	/**
