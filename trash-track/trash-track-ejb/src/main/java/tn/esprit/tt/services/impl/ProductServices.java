@@ -58,7 +58,7 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 
 	@Override
 	public void addProductWithoutIdCompany(Product product) {
-		entityManager.persist(product);
+		entityManager.merge(product);
 	}
 
 }

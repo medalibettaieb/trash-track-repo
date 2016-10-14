@@ -22,7 +22,7 @@ public class Product implements Serializable {
 	private Integer id;
 	private String name;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private User company;
 	private static final long serialVersionUID = 1L;
 

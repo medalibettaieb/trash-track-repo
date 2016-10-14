@@ -42,10 +42,7 @@ public class Util {
 
 		userServicesLocal.addUser(customer);
 		userServicesLocal.addUser(customer2);
-		userServicesLocal.addUser(company);
 
-		// productServicesLocal.addProduct(product,
-		// userServicesLocal.updateUser(company).getId());
 		productServicesLocal.addProductWithoutIdCompany(product);
 	}
 }
