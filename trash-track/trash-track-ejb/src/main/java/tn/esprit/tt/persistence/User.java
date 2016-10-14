@@ -25,7 +25,7 @@ public class User implements Serializable {
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "company",cascade=CascadeType.MERGE)
+	@OneToMany(mappedBy = "company", cascade = CascadeType.MERGE)
 	private List<Product> products;
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +36,13 @@ public class User implements Serializable {
 	public User(String name) {
 		super();
 		this.name = name;
+	}
+
+	public void linkProductsToThisUser(List<Product> products) {
+		this.products = products;
+		for (Product p : products) {
+			p.setCompany(this);
+		}
 	}
 
 	public Integer getId() {

@@ -25,7 +25,7 @@ public class AddUserWhithProductGUI {
 		List<Product> products=new ArrayList<>();
 		products.add(product);
 		
-		user.setProducts(products);
+		user.linkProductsToThisUser(products);
 
 		userServicesRemote.addUser(user);
 
