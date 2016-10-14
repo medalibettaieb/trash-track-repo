@@ -3,6 +3,7 @@ package tn.esprit.tt.persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class User implements Serializable {
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "company")
+	@OneToMany(mappedBy = "company",cascade=CascadeType.MERGE)
 	private List<Product> products;
 	private static final long serialVersionUID = 1L;
 

@@ -24,7 +24,7 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 
 	@Override
 	public void addUser(User user) {
-		entityManager.persist(user);
+		entityManager.merge(user);
 	}
 
 	@Override
