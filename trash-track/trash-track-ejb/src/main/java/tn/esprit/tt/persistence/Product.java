@@ -1,38 +1,35 @@
 package tn.esprit.tt.persistence;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
- * Entity implementation class for Entity: User
+ * Entity implementation class for Entity: Product
  *
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User implements Serializable {
+
+public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "company")
-	private List<Product> products;
+	@ManyToOne
+	private User company;
 	private static final long serialVersionUID = 1L;
 
-	public User() {
+	public Product() {
 		super();
 	}
 
-	public User(String name) {
+	public Product(String name) {
 		super();
 		this.name = name;
 	}
@@ -53,12 +50,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public User getCompany() {
+		return company;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setCompany(User company) {
+		this.company = company;
 	}
 
 }
