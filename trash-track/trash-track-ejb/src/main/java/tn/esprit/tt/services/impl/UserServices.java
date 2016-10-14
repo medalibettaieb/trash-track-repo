@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import tn.esprit.tt.persistence.Company;
 import tn.esprit.tt.persistence.User;
 import tn.esprit.tt.services.interfaces.UserServicesLocal;
 import tn.esprit.tt.services.interfaces.UserServicesRemote;
@@ -28,8 +29,8 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 	}
 
 	@Override
-	public void updateUser(User user) {
-		entityManager.merge(user);
+	public User updateUser(User user) {
+		return entityManager.merge(user);
 	}
 
 	@Override
@@ -41,6 +42,12 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 	public User findUserById(Integer idUser) {
 		return entityManager.find(User.class, idUser);
 
+	}
+
+	@Override
+	public Company findMostActiveCompany() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -2,6 +2,7 @@ package tn.esprit.tt.persistence;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Product implements Serializable {
 	private Integer id;
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private User company;
 	private static final long serialVersionUID = 1L;
 

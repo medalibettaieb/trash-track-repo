@@ -8,7 +8,7 @@ import tn.esprit.tt.persistence.User;
 public interface UserServicesLocal {
 	void addUser(User user);
 
-	void updateUser(User user);
+	User updateUser(User user);
 
 	void deleteUser(User user);
 

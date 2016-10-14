@@ -8,6 +8,8 @@ import javax.ejb.Startup;
 
 import tn.esprit.tt.persistence.Company;
 import tn.esprit.tt.persistence.Customer;
+import tn.esprit.tt.persistence.Product;
+import tn.esprit.tt.services.interfaces.ProductServicesLocal;
 import tn.esprit.tt.services.interfaces.UserServicesLocal;
 
 /**
@@ -19,12 +21,13 @@ import tn.esprit.tt.services.interfaces.UserServicesLocal;
 public class Util {
 	@EJB
 	private UserServicesLocal userServicesLocal;
+	@EJB
+	private ProductServicesLocal productServicesLocal;
 
 	/**
 	 * Default constructor.
 	 */
 	public Util() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@PostConstruct
@@ -34,9 +37,15 @@ public class Util {
 
 		Company company = new Company("candy-trash", "ay haja");
 
+		Product product = new Product("saboon");
+		product.setCompany(company);
+
 		userServicesLocal.addUser(customer);
 		userServicesLocal.addUser(customer2);
 		userServicesLocal.addUser(company);
 
+		// productServicesLocal.addProduct(product,
+		// userServicesLocal.updateUser(company).getId());
+		productServicesLocal.addProductWithoutIdCompany(product);
 	}
 }

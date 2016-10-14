@@ -1,5 +1,7 @@
 package tn.esprit.tt.services.impl;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,7 +27,6 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 	 * Default constructor.
 	 */
 	public ProductServices() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -35,6 +36,29 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 		product.setCompany(companyFound);
 
 		entityManager.merge(product);
+	}
+
+	@Override
+	public String findCompanyLogoByProductId(Integer idProduct) {
+		Product productFound = findProductById(idProduct);
+		Company company = (Company) productFound.getCompany();
+		return company.getLogo();
+	}
+
+	@Override
+	public List<Product> findAllProductsByCompanyId(Integer idCompany) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product findProductById(Integer idProduct) {
+		return entityManager.find(Product.class, idProduct);
+	}
+
+	@Override
+	public void addProductWithoutIdCompany(Product product) {
+		entityManager.persist(product);
 	}
 
 }
