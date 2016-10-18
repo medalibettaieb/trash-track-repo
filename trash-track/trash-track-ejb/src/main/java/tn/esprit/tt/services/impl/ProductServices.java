@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.esprit.tt.persistence.Company;
 import tn.esprit.tt.persistence.Product;
@@ -45,10 +46,13 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 		return company.getLogo();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> findAllProductsByCompanyId(Integer idCompany) {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "SELECT p FROM Product p WHERE p.company.id=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", idCompany);
+		return query.getResultList();
 	}
 
 	@Override

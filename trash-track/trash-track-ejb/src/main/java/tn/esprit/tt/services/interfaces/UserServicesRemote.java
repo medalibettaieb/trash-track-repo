@@ -17,4 +17,6 @@ public interface UserServicesRemote {
 
 	Company findMostActiveCompany();
 
+	void subscribeToProduct(Integer idUser, Integer idProduct, Integer duration);
+
 }

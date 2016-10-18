@@ -1,11 +1,15 @@
 package tn.esprit.tt.services.impl;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import tn.esprit.tt.persistence.Company;
+import tn.esprit.tt.persistence.Product;
+import tn.esprit.tt.persistence.SubscriptionDetail;
 import tn.esprit.tt.persistence.User;
+import tn.esprit.tt.services.interfaces.ProductServicesLocal;
 import tn.esprit.tt.services.interfaces.UserServicesLocal;
 import tn.esprit.tt.services.interfaces.UserServicesRemote;
 
@@ -16,6 +20,8 @@ import tn.esprit.tt.services.interfaces.UserServicesRemote;
 public class UserServices implements UserServicesRemote, UserServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
+	@EJB
+	private ProductServicesLocal productServicesLocal;
 
 	/**
 	 * Default constructor.
@@ -48,6 +54,14 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 	public Company findMostActiveCompany() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void subscribeToProduct(Integer idUser, Integer idProduct, Integer duration) {
+		User user = findUserById(idUser);
+		Product product = productServicesLocal.findProductById(idProduct);
+		SubscriptionDetail subscriptionDetail = new SubscriptionDetail(duration, user, product);
+		entityManager.merge(subscriptionDetail);
 	}
 
 }

@@ -29,6 +29,9 @@ public class User implements Serializable {
 	private List<Product> products;
 	private static final long serialVersionUID = 1L;
 
+	@OneToMany(mappedBy = "user")
+	private List<SubscriptionDetail> subscriptionDetails;
+
 	public User() {
 		super();
 	}
@@ -67,6 +70,14 @@ public class User implements Serializable {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public List<SubscriptionDetail> getSubscriptionDetails() {
+		return subscriptionDetails;
+	}
+
+	public void setSubscriptionDetails(List<SubscriptionDetail> subscriptionDetails) {
+		this.subscriptionDetails = subscriptionDetails;
 	}
 
 }
