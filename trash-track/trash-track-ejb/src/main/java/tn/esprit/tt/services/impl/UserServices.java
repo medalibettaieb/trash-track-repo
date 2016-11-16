@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.esprit.tt.persistence.Company;
 import tn.esprit.tt.persistence.Product;
@@ -30,16 +31,6 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 	}
 
 	@Override
-	public void addUser(User user) {
-		entityManager.merge(user);
-	}
-
-	@Override
-	public User updateUser(User user) {
-		return entityManager.merge(user);
-	}
-
-	@Override
 	public void deleteUser(User user) {
 		entityManager.remove(user);
 	}
@@ -62,6 +53,27 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		Product product = productServicesLocal.findProductById(idProduct);
 		SubscriptionDetail subscriptionDetail = new SubscriptionDetail(duration, user, product);
 		entityManager.merge(subscriptionDetail);
+	}
+
+	@Override
+	public void saveOrUpdate(User user) {
+		entityManager.merge(user);
+	}
+
+	@Override
+	public User findUserByLogin(String login, String password) {
+		User user = null;
+		String jpql = "SELECT u FROM User u WHERE u.login=:param1 AND u.password=:param2";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param1", login);
+		query.setParameter("param2", password);
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			System.err.println("user not found");
+		}
+
+		return user;
 	}
 
 }

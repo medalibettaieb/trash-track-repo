@@ -17,8 +17,7 @@ public class UpdateUserGUI {
 		User userFound = userServicesRemote.findUserById(1);
 		userFound.setName("newLook");
 
-		userServicesRemote.updateUser(userFound);
-
+		userServicesRemote.saveOrUpdate(userFound);
 	}
 
 }

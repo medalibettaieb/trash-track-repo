@@ -7,9 +7,8 @@ import tn.esprit.tt.persistence.User;
 
 @Remote
 public interface UserServicesRemote {
-	void addUser(User user);
 
-	User updateUser(User user);
+	void saveOrUpdate(User user);
 
 	void deleteUser(User user);
 
@@ -18,5 +17,7 @@ public interface UserServicesRemote {
 	Company findMostActiveCompany();
 
 	void subscribeToProduct(Integer idUser, Integer idProduct, Integer duration);
+
+	User findUserByLogin(String login, String password);
 
 }

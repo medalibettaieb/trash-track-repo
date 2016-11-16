@@ -24,6 +24,8 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private String login;
+	private String password;
 
 	@OneToMany(mappedBy = "company", cascade = CascadeType.MERGE)
 	private List<Product> products;
@@ -78,6 +80,22 @@ public class User implements Serializable {
 
 	public void setSubscriptionDetails(List<SubscriptionDetail> subscriptionDetails) {
 		this.subscriptionDetails = subscriptionDetails;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

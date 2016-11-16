@@ -27,7 +27,7 @@ public class AddUserWhithProductGUI {
 		
 		user.linkProductsToThisUser(products);
 
-		userServicesRemote.addUser(user);
+		userServicesRemote.saveOrUpdate(user);
 
 	}
 

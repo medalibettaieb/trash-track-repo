@@ -33,15 +33,21 @@ public class Util {
 	@PostConstruct
 	public void initDB() {
 		Customer customer = new Customer("salah", "manar");
+		customer.setLogin("c1");
+		customer.setPassword("c1");
 		Customer customer2 = new Customer("saliha", "nasr");
+		customer2.setLogin("c2");
+		customer2.setPassword("c2");
 
 		Company company = new Company("candy-trash", "ay haja");
+		company.setLogin("C");
+		company.setPassword("C");
 
 		Product product = new Product("saboon");
 		product.setCompany(company);
 
-		userServicesLocal.addUser(customer);
-		userServicesLocal.addUser(customer2);
+		userServicesLocal.saveOrUpdate(customer);
+		userServicesLocal.saveOrUpdate(customer2);
 
 		productServicesLocal.addProductWithoutIdCompany(product);
 	}
