@@ -5,19 +5,20 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/template/template.xhtml">
-	<ui:define name="title"></ui:define>
+	<ui:define name="title">addProduct</ui:define>
 	<ui:define name="content">
-
 		<h:form>
-			<h1>welcome</h1>
 			<h:panelGrid columns="2">
-				<h:outputText value="login" />
-				<h:inputText value="#{loginBean.user.login}" />
-				<h:outputText value="password" />
-				<h:inputSecret value="#{loginBean.user.password}" />
+				<h:outputText value="name" />
+				<h:inputText value="#{productManagementBean.product.name}" />
+				<h:commandButton action="#{productManagementBean.doAddProduct()}"
+					value="add" />
 			</h:panelGrid>
-			<h:commandButton action="#{loginBean.doLogin()}" value="login" />
-		</h:form>
-	</ui:define>
-</ui:composition>
 
+
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

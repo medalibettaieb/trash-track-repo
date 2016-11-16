@@ -7,17 +7,15 @@
 	template="/WEB-INF/template/template.xhtml">
 	<ui:define name="title"></ui:define>
 	<ui:define name="content">
-
 		<h:form>
-			<h1>welcome</h1>
-			<h:panelGrid columns="2">
-				<h:outputText value="login" />
-				<h:inputText value="#{loginBean.user.login}" />
-				<h:outputText value="password" />
-				<h:inputSecret value="#{loginBean.user.password}" />
-			</h:panelGrid>
-			<h:commandButton action="#{loginBean.doLogin()}" value="login" />
+			<h:commandLink action="addProduct?faces-redirect=true"
+				value="add product" /><br />
+			<h:commandLink action="listProductsByCompany?faces-redirect=true"
+				value="list product" />
 		</h:form>
-	</ui:define>
-</ui:composition>
 
+
+	</ui:define>
+
+
+</ui:composition>
