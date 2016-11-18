@@ -1,5 +1,8 @@
 package tn.esprit.tt.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -46,9 +49,18 @@ public class Util {
 		Product product = new Product("saboon");
 		product.setCompany(company);
 
+		Product product2 = new Product("javel");
+		product2.setCompany(company);
+
+		List<Product> products = new ArrayList<>();
+		products.add(product);
+		products.add(product2);
+
+		company.linkProductsToThisUser(products);
+
 		userServicesLocal.saveOrUpdate(customer);
 		userServicesLocal.saveOrUpdate(customer2);
+		userServicesLocal.saveOrUpdate(company);
 
-		productServicesLocal.addProductWithoutIdCompany(product);
 	}
 }

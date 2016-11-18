@@ -65,4 +65,9 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 		entityManager.merge(product);
 	}
 
+	@Override
+	public void deleteProduct(Product product) {
+		entityManager.remove(entityManager.merge(product));
+	}
+
 }

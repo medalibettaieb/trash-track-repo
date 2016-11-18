@@ -18,4 +18,6 @@ public interface ProductServicesLocal {
 
 	void addProductWithoutIdCompany(Product product);
 
+	void deleteProduct(Product product);
+
 }
